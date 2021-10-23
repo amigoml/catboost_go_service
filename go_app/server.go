@@ -25,7 +25,8 @@ func arrayToString(a []float64, delim string) string {
 }
 
 func (m *ml) testOk(w http.ResponseWriter, r *http.Request) {
-	example := [][]float32{
+	// example of inferecne for 2 objects
+	dence_features := [][]float32{
 		[]float32{-0.74739256,  1.7759689 ,  0.9164685 ,  1.69462746,  0.15660069,
 			-0.25860515,  0.41270785,  0.33380319,  0.93324519,  0.91686549,
 			0.37013758,  1.11828495, -0.04145232,  0.28582875, -1.23362585,
@@ -36,11 +37,11 @@ func (m *ml) testOk(w http.ResponseWriter, r *http.Request) {
 			1.77142870e+00, -4.91911687e-01, -1.18888478e+00, -3.64192469e-01,
 			1.91465730e+00, -1.44569499e+00,  1.39303868e+00, -6.81542112e-01,}, //0.24511496453349393
 	}
-	cat_example := [][]string{
+	cat_features := [][]string{
 		[]string{"2"},
 		[]string{"1"},
 	}
-	res, _ := m.model.PredictProba(example, 20, cat_example, 1)
+	res, _ := m.model.PredictProba(dence_features, 20, cat_features, 1)
 	fmt.Println(res)
 
 	responseJSON(w, []byte(arrayToString(res, ",")))
